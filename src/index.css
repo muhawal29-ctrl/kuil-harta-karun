@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Lilita One", cursive, system-ui, sans-serif;
+  --font-sans: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: "Poppins", system-ui, -apple-system, sans-serif;
+    background-color: #2b1a0e;
+    color: #24160c;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    font-family: "Lilita One", cursive, system-ui, sans-serif;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+}
+
+/* Pola batu kuil kuno halus tanpa gambar eksternal */
+.temple-backdrop {
+  background-color: #2b1a0e;
+  background-image:
+    radial-gradient(circle at 50% 18%, rgba(242, 193, 78, 0.16) 0%, rgba(43, 26, 14, 0) 58%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 224, 150, 0.03) 0px,
+      rgba(255, 224, 150, 0.03) 1px,
+      transparent 1px,
+      transparent 48px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 224, 150, 0.025) 0px,
+      rgba(255, 224, 150, 0.025) 1px,
+      transparent 1px,
+      transparent 72px
+    );
+}
+
+/* Animasi transisi halaman & elemen hadiah */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes keyAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.55) rotate(-18deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.12) rotate(6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes chestLidSwing {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(-36deg) translateY(-14px);
+  }
+}
+
+@keyframes treasureGlow {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-key-appear {
+  animation: keyAppear 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float-slow {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
+.animate-chest-lid {
+  transform-origin: 36px 96px;
+  animation: chestLidSwing 750ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards;
+}
+
+.animate-treasure-glow {
+  animation: treasureGlow 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-chest-lid {
+    transform: rotate(-36deg) translateY(-14px);
+  }
+}
